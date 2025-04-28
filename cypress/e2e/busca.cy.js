@@ -4,6 +4,9 @@ describe('US-012 : Busca de Filmes', () => {
     beforeEach(() => {
         cy.visit('/')
     });
+    afterEach(() => {
+        cy.screenshot()
+    })
 
     it('Deve buscar filmes com sucesso', () => {
         cy.get('#search-input').type('Matrix')
@@ -19,7 +22,7 @@ describe('US-012 : Busca de Filmes', () => {
         })
     });
 
-    it.only('Deve buscar filmes com sucesso da uma lista inteira', () => {
+    it('Deve buscar filmes com sucesso da uma lista inteira', () => {
         cy.fixture('filmes').each((filmes) => {
             cy.get('#search-input').clear().type(filmes.titulo)
             cy.get('#search-button').click()
